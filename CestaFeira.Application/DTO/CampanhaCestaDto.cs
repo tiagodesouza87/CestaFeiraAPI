@@ -7,5 +7,5 @@ using CestaFeira.Domain.Enum;
 
 namespace CestaFeira.Application.DTO
 {
-    public record CampanhaCestaDto(Guid Id, string Nome, string Descricao, int QuantidadeCestas, SituacaoCampanha Situacao);
+    public record CampanhaCestaDto(int Id, string Nome, string Descricao, int QuantidadeCestas, SituacaoCampanha Situacao);
 }

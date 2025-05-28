@@ -19,7 +19,7 @@ namespace CestaFeira.Infra.Services
         public async Task<IEnumerable<ItemDto>> GetAllAsync()
             => (await _repository.GetAllAsync()).Select(i => new ItemDto(i.IdItem, i.Nome, i.Descricao, i.Situacao));
 
-        public async Task<ItemDto> GetByIdAsync(Guid id)
+        public async Task<ItemDto> GetByIdAsync(int id)
         {
             var item = await _repository.GetByIdAsync(id);
             return new ItemDto(item.IdItem, item.Nome, item.Descricao, item.Situacao);
@@ -27,7 +27,7 @@ namespace CestaFeira.Infra.Services
 
         public async Task CreateAsync(ItemDto dto)
         {
-            var item = new Item { IdItem = Guid.NewGuid(), Nome = dto.Nome, Descricao = dto.Descricao, Situacao = dto.Situacao };
+            var item = new Item { IdItem = 0, Nome = dto.Nome, Descricao = dto.Descricao, Situacao = dto.Situacao };
             await _repository.AddAsync(item);
         }
 
@@ -37,7 +37,7 @@ namespace CestaFeira.Infra.Services
             await _repository.UpdateAsync(item);
         }
 
-        public async Task DeleteAsync(Guid id) => await _repository.DeleteAsync(id);
+        public async Task DeleteAsync(int id) => await _repository.DeleteAsync(id);
     }
 
 }

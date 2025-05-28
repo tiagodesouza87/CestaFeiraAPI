@@ -9,7 +9,7 @@ namespace CestaFeira.Domain.Entidades
 {
     public class Item
     {
-        public Guid IdItem { get; set; }
+        public int IdItem { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public SituacaoCadastro Situacao { get; set; }

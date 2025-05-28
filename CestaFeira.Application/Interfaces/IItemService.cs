@@ -10,9 +10,9 @@ namespace CestaFeira.Application.Interfaces
     public interface IItemService
     {
         Task<IEnumerable<ItemDto>> GetAllAsync();
-        Task<ItemDto> GetByIdAsync(Guid id);
+        Task<ItemDto> GetByIdAsync(int id);
         Task CreateAsync(ItemDto dto);
         Task UpdateAsync(ItemDto dto);
-        Task DeleteAsync(Guid id);
+        Task DeleteAsync(int id);
     }
 }

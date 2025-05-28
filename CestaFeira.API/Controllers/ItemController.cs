@@ -16,7 +16,7 @@ namespace CestaFeira.API.Controllers
         public async Task<IActionResult> Get() => Ok(await _service.GetAllAsync());
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id) => Ok(await _service.GetByIdAsync(id));
+        public async Task<IActionResult> Get(int id) => Ok(await _service.GetByIdAsync(id));
 
         [HttpPost]
         public async Task<IActionResult> Post(ItemDto dto)
@@ -26,7 +26,7 @@ namespace CestaFeira.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid id, ItemDto dto)
+        public async Task<IActionResult> Put(int id, ItemDto dto)
         {
             if (id != dto.Id) return BadRequest();
             await _service.UpdateAsync(dto);
@@ -34,7 +34,7 @@ namespace CestaFeira.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(int id)
         {
             await _service.DeleteAsync(id);
             return NoContent();

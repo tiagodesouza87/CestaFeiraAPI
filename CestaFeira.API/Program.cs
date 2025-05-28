@@ -7,11 +7,18 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//// Add services to the container.
+//builder.Services.AddDbContext<CestaFeiraContext>(options =>
+//    options.UseMySql(
+//        builder.Configuration.GetConnectionString("DefaultConnection"),
+//        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+//    )
+//);
+
 builder.Services.AddDbContext<CestaFeiraContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
-        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+        new MySqlServerVersion(new Version(10, 6, 0)) // ajuste conforme sua versão
     )
 );
 

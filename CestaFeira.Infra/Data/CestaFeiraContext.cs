@@ -15,6 +15,10 @@ namespace CestaFeira.Infra.Data
         public DbSet<ItemDoacao> ItensDoacao { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseMySql()
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CampanhaCestaConfiguration());

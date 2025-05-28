@@ -14,11 +14,16 @@ namespace CestaFeira.Infra.Repository
     {
         private readonly CestaFeiraContext _context;
 
-        public ItemRepository(CestaFeiraContext context) => _context = context;
+        public ItemRepository(CestaFeiraContext context) => _context = context;1
+        //public ItemRepository()
+        //{
+        //    _context = new CestaFeiraContext();
+        //    _context.Database.EnsureCreated();
+        //}
 
         public async Task<IEnumerable<Item>> GetAllAsync() => await _context.Itens.ToListAsync();
 
-        public async Task<Item> GetByIdAsync(Guid id) => await _context.Itens.FindAsync(id);
+        public async Task<Item> GetByIdAsync(int id) => await _context.Itens.FindAsync(id);
 
         public async Task AddAsync(Item item)
         {
@@ -32,7 +37,7 @@ namespace CestaFeira.Infra.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             var item = await _context.Itens.FindAsync(id);
             if (item is not null)

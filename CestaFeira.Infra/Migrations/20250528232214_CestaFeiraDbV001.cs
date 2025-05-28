@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -38,7 +37,8 @@ namespace CestaFeira.Infra.Migrations
                 name: "Itens",
                 columns: table => new
                 {
-                    IdItem = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    IdItem = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Descricao = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false)
@@ -136,7 +136,7 @@ namespace CestaFeira.Infra.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Quantidade = table.Column<int>(type: "int", nullable: false),
                     IdItem = table.Column<int>(type: "int", nullable: false),
-                    ItemIdItem = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    ItemIdItem = table.Column<int>(type: "int", nullable: false),
                     IdCestaBasica = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
