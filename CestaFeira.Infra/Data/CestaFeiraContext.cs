@@ -1,12 +1,13 @@
 ﻿using CestaFeira.Domain.Entidades;
 using CestaFeira.Infra.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace CestaFeira.Infra.Data
 {
     public class CestaFeiraContext : DbContext
     {
-        public CestaFeiraContext(DbContextOptions<CestaFeiraContext> options) : base(options) { }
         public DbSet<Item> Itens { get; set; }
         public DbSet<CampanhaCesta> Campanhas { get; set; }
         public DbSet<CestaBasica> CestasBasicas { get; set; }
@@ -14,11 +15,20 @@ namespace CestaFeira.Infra.Data
         public DbSet<ItemCestaBasica> ItensCestaBasica { get; set; }
         public DbSet<ItemDoacao> ItensDoacao { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        private readonly IConfiguration _configuration;
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseMySql()
-        //}
+        public CestaFeiraContext() {
+            _configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())  // Define o diretório base
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)  // Adiciona o appsettings.json
+            .Build();
+        }                
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySql(_configuration.GetConnectionString("DefaultConnection"),
+            ServerVersion.AutoDetect(_configuration.GetConnectionString("DefaultConnection"))
+            );
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CampanhaCestaConfiguration());

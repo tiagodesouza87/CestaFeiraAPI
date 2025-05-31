@@ -13,7 +13,10 @@ namespace CestaFeira.API.Controllers
         public ItemController(IItemService service) => _service = service;
 
         [HttpGet]
-        public async Task<IActionResult> Get() => Ok(await _service.GetAllAsync());
+        public async Task<IActionResult> Get(){
+            //Obtem itens do banco de dados
+            return Ok(await _service.GetAllAsync());
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id) => Ok(await _service.GetByIdAsync(id));

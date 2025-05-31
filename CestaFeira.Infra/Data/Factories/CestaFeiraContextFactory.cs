@@ -22,7 +22,7 @@ namespace CestaFeira.Infra.Data.Factories
                 ServerVersion.AutoDetect(connectionString)
             );
 
-            return new CestaFeiraContext(optionsBuilder.Options);
+            return new CestaFeiraContext();
         }
     }
 }

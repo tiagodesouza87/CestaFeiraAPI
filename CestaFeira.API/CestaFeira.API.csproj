@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CestaFeira.Application\CestaFeira.Application.csproj" />
+    <ProjectReference Include="..\CestaFeira.Domain\CestaFeira.Domain.csproj" />
     <ProjectReference Include="..\CestaFeira.Infra\CestaFeira.Infra.csproj" />
   </ItemGroup>
 

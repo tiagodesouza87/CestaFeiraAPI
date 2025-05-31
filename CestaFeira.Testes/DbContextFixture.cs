@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CestaFeira.Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace CestaFeira.Testes
 {
@@ -14,14 +15,7 @@ namespace CestaFeira.Testes
 
         public DbContextFixture()
         {
-            var options = new DbContextOptionsBuilder<CestaFeiraContext>()
-                .UseMySql("Server=localhost;Database=CestaFeiraDb;User=root;Password=firehead;",
-                    new MySqlServerVersion(new Version(10, 6, 0)))
-                .Options;
-
-            Context = new CestaFeiraContext(options);
-
-            // Garantir que banco existe
+            Context = new CestaFeiraContext();
             Context.Database.EnsureCreated();
         }
 

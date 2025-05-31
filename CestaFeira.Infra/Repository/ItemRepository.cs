@@ -14,12 +14,12 @@ namespace CestaFeira.Infra.Repository
     {
         private readonly CestaFeiraContext _context;
 
-        public ItemRepository(CestaFeiraContext context) => _context = context;1
-        //public ItemRepository()
-        //{
-        //    _context = new CestaFeiraContext();
-        //    _context.Database.EnsureCreated();
-        //}
+        //public ItemRepository(CestaFeiraContext context) => _context = context;
+        public ItemRepository()
+        {
+            _context = new CestaFeiraContext();
+            _context.Database.EnsureCreated();
+        }
 
         public async Task<IEnumerable<Item>> GetAllAsync() => await _context.Itens.ToListAsync();
 
